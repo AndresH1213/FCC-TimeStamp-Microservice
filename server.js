@@ -32,15 +32,15 @@ app.get('/api/:date?', (req, res, next) => {
   const utc = new Date(date);
   if (!date) {
     const now_utc = new Date();
-    const now_unix = utc.getTime();
-    res.json({"unix":now_unix,"utc": now_utc})
+    const now_unix = now_utc.getTime();
+    res.json({"unix":now_unix,"utc": now_utc.toUTCString()})
   }
   else if (utc == "Invalid Date") {
     res.json({error: 'Invalid Date'})
   }
   else {
     const unix = utc.getTime(); 
-    res.json({"unix":unix,"utc": utc})
+    res.json({"unix":unix,"utc": utc.toUTCString()})
   }
 })
 
